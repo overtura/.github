@@ -3,7 +3,7 @@
 보안 취약점으로 의심되는 내용은 public issue에 올리지 마세요.
 
 ## Report
-- 이메일: `<YOUR_EMAIL>`
+- 이메일: ` ok.or.orion@gmail.com`
 - 제목 예시: `[SECURITY][repo-name] short summary`
 
 ## 포함해주면 좋은 내용
