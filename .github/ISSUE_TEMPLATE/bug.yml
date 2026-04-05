@@ -1,0 +1,50 @@
+name: Bug
+description: 버그, 회귀, 실패 처리 문제를 기록합니다.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제
+      placeholder: 어떤 문제가 발생했는지 적어주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 재현 절차
+      placeholder: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 동작
+      placeholder: 원래 어떻게 동작해야 하나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 동작
+      placeholder: 실제로는 어떻게 보이나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: 수정 완료 조건
+      placeholder: |
+        - [ ] 재현 불가
+        - [ ] 회귀 없음
+        - [ ] 관련 flow 수동 확인
+    validations:
+      required: true

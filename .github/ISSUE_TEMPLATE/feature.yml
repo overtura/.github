@@ -1,0 +1,48 @@
+name: Feature
+description: 새 기능 또는 작은 MVP 작업 단위를 정의합니다.
+title: "[feature] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제 / 목적
+      description: 이 작업으로 해결하려는 문제를 적어주세요.
+      placeholder: 사용자가 무엇을 할 수 있어야 하는가?
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-flow
+    attributes:
+      label: 사용자 flow
+      description: 3~5단계 정도로 적어주세요.
+      placeholder: |
+        1. 사용자가 페이지에 들어온다
+        2. 버튼을 누른다
+        3. 결과를 본다
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 포함 / 제외 범위
+      placeholder: |
+        포함:
+        - 
+        제외:
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: 완료 조건
+      placeholder: |
+        - [ ] 핵심 flow 동작
+        - [ ] 실패/빈 상태 최소 1개 처리
+        - [ ] README 반영
+    validations:
+      required: true
