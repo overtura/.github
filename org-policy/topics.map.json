@@ -30,11 +30,6 @@
         "validation",
         "config"
     ],
-    "overtura/readme-svg-card-lib": [
-        "library",
-        "readme",
-        "svg"
-    ],
     "overtura/openapi-mock-example-lib": [
         "library",
         "openapi",
