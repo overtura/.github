@@ -1,0 +1,65 @@
+name: Enforce Repository Topics
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "17 3 * * 1-5"
+
+jobs:
+    enforce:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+
+        steps:
+            - name: Checkout .github repo
+              uses: actions/checkout@v4
+
+            - name: Install jq
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y jq
+
+            - name: Install GitHub CLI
+              run: |
+                  if ! command -v gh >/dev/null 2>&1; then
+                    type -p curl >/dev/null || sudo apt-get install -y curl
+                    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+                      | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+                    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+                      | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+                    sudo apt-get update
+                    sudo apt-get install -y gh
+                  fi
+
+            - name: Authenticate gh
+              env:
+                  GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+              run: |
+                  gh auth status || gh auth login --with-token <<< "$GH_TOKEN"
+
+            - name: Enforce topics from map
+              env:
+                  GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+              run: |
+                  MAP_FILE="org-policy/topics.map.json"
+
+                  if [ ! -f "$MAP_FILE" ]; then
+                    echo "Missing $MAP_FILE"
+                    exit 1
+                  fi
+
+                  jq -r 'to_entries[] | @base64' "$MAP_FILE" | while read -r row; do
+                    entry="$(echo "$row" | base64 -d)"
+                    repo="$(echo "$entry" | jq -r '.key')"
+                    topics_json="$(echo "$entry" | jq -c '.value')"
+
+                    echo "Applying topics to $repo -> $topics_json"
+
+                    gh api \
+                      -X PUT \
+                      -H "Accept: application/vnd.github+json" \
+                      "/repos/$repo/topics" \
+                      --input - <<< "{\"names\": $topics_json}"
+                  done

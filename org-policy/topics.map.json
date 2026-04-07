@@ -1,0 +1,223 @@
+{
+    "overtura/.github": [
+        "ops",
+        "org-defaults"
+    ],
+    "overtura/overtura-studio": [
+        "ops",
+        "catalog"
+    ],
+    "overtura/template-web": [
+        "template",
+        "web"
+    ],
+    "overtura/template-node": [
+        "template",
+        "node"
+    ],
+    "overtura/import-map": [
+        "project",
+        "dx",
+        "dependency-graph"
+    ],
+    "overtura/commit-to-release-notes": [
+        "library",
+        "release-notes",
+        "git"
+    ],
+    "overtura/env-config-validator": [
+        "library",
+        "validation",
+        "config"
+    ],
+    "overtura/readme-svg-card-lib": [
+        "library",
+        "readme",
+        "svg"
+    ],
+    "overtura/openapi-mock-example-lib": [
+        "library",
+        "openapi",
+        "mocking"
+    ],
+    "overtura/playwright-snapshot-helper": [
+        "library",
+        "testing",
+        "playwright"
+    ],
+    "overtura/folder-to-architecture-map": [
+        "cli",
+        "architecture",
+        "dx"
+    ],
+    "overtura/commit-translator-cli": [
+        "cli",
+        "release-notes",
+        "tooling"
+    ],
+    "overtura/api-smoke-board": [
+        "project",
+        "api",
+        "dashboard"
+    ],
+    "overtura/readme-card-api": [
+        "project",
+        "api",
+        "readme"
+    ],
+    "overtura/release-note-api": [
+        "project",
+        "api",
+        "release-notes"
+    ],
+    "overtura/ui-snapshot-api": [
+        "project",
+        "api",
+        "playwright"
+    ],
+    "overtura/active-theory-work-mvp": [
+        "project",
+        "web",
+        "interactive"
+    ],
+    "overtura/svg-icon-logo-loader-animator": [
+        "project",
+        "svg",
+        "animation"
+    ],
+    "overtura/developer-svg-motion-editor": [
+        "project",
+        "svg",
+        "animation"
+    ],
+    "overtura/figma-export-svg-animator": [
+        "project",
+        "svg",
+        "figma"
+    ],
+    "overtura/particle-survival-test": [
+        "project",
+        "webgpu",
+        "performance"
+    ],
+    "overtura/gpu-aquarium": [
+        "project",
+        "webgpu",
+        "visualization"
+    ],
+    "overtura/browser-collapse-simulator": [
+        "project",
+        "webgpu",
+        "performance"
+    ],
+    "overtura/gpu-boss-raid": [
+        "project",
+        "webgpu",
+        "game"
+    ],
+    "overtura/gpu-city-builder": [
+        "project",
+        "webgpu",
+        "visualization"
+    ],
+    "overtura/gpu-genome": [
+        "project",
+        "webgpu",
+        "device-profile"
+    ],
+    "overtura/dm-signal-reader": [
+        "project",
+        "browser-app",
+        "social"
+    ],
+    "overtura/profile-roast-fixer": [
+        "project",
+        "browser-app",
+        "profile"
+    ],
+    "overtura/roast-my-pr": [
+        "project",
+        "browser-app",
+        "code-review"
+    ],
+    "overtura/roast-my-resume-linkedin": [
+        "project",
+        "browser-app",
+        "career"
+    ],
+    "overtura/wrapped-roast": [
+        "project",
+        "browser-app",
+        "roast"
+    ],
+    "overtura/voice-note-tea-extractor": [
+        "project",
+        "transcript",
+        "summarization"
+    ],
+    "overtura/retro95-ai": [
+        "project",
+        "llm-local",
+        "webgpu"
+    ],
+    "overtura/raccobot": [
+        "project",
+        "llm-local",
+        "character-ai"
+    ],
+    "overtura/artifact-demo-vault": [
+        "cli",
+        "artifacts",
+        "build-output"
+    ],
+    "overtura/dev-utility-hub": [
+        "project",
+        "devops",
+        "local-ops"
+    ],
+    "overtura/aws-native-front-hosting-lab": [
+        "experiment",
+        "aws",
+        "hosting"
+    ],
+    "overtura/custom-domain-mail-lab": [
+        "experiment",
+        "aws",
+        "email"
+    ],
+    "overtura/deploy-watch": [
+        "experiment",
+        "monitoring",
+        "deploy"
+    ],
+    "overtura/linkdrop": [
+        "experiment",
+        "api",
+        "link-sharing"
+    ],
+    "overtura/readme-shot-maker": [
+        "project",
+        "readme",
+        "svg"
+    ],
+    "overtura/what-changed": [
+        "project",
+        "json-diff",
+        "browser-app"
+    ],
+    "overtura/click-and-pray": [
+        "project",
+        "deploy",
+        "humor"
+    ],
+    "overtura/blank-slate": [
+        "project",
+        "ui-gallery",
+        "design"
+    ],
+    "overtura/api-ppobgi": [
+        "project",
+        "web-tool",
+        "ready"
+    ]
+}
