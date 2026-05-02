@@ -9,5 +9,3 @@
 - contribution guide (`CONTRIBUTING.md`)
 - support guide (`SUPPORT.md`)
 - security policy (`SECURITY.md`)
-
-이 저장소는 public 이어야 한다.
