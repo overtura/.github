@@ -19,7 +19,7 @@ jobs:
 
         steps:
             - name: Checkout .github repo
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Install jq
               run: |
@@ -59,16 +59,58 @@ jobs:
               run: |
                   MAP_FILE="org-policy/topics.map.json"
 
+                  apply_topics() {
+                    endpoint="$1"
+                    payload="$2"
+                    response_file="$(mktemp)"
+
+                    if gh api \
+                        -X PUT \
+                        -H "Accept: application/vnd.github+json" \
+                        "$endpoint" \
+                        --input - <<< "$payload" >"$response_file" 2>&1; then
+                      cat "$response_file"
+                      rm -f "$response_file"
+                      return 0
+                    else
+                      status="$?"
+                    fi
+
+                    redirect_url="$(
+                      sed -n '/^{/,$p' "$response_file" \
+                        | jq -r '.url // empty' 2>/dev/null \
+                        || true
+                    )"
+
+                    if [ -n "$redirect_url" ]; then
+                      redirect_path="${redirect_url#https://api.github.com}"
+
+                      if [ "$redirect_path" != "$redirect_url" ] && [ -n "$redirect_path" ]; then
+                        echo "GitHub API redirected $endpoint -> $redirect_path"
+
+                        if gh api \
+                            -X PUT \
+                            -H "Accept: application/vnd.github+json" \
+                            "$redirect_path" \
+                            --input - <<< "$payload"; then
+                          rm -f "$response_file"
+                          return 0
+                        fi
+                      fi
+                    fi
+
+                    cat "$response_file" >&2
+                    rm -f "$response_file"
+                    return "$status"
+                  }
+
                   jq -r 'to_entries[] | @base64' "$MAP_FILE" | while read -r row; do
                     entry="$(echo "$row" | base64 -d)"
                     repo="$(echo "$entry" | jq -r '.key')"
                     topics_json="$(echo "$entry" | jq -c '.value')"
+                    payload="$(jq -cn --argjson names "$topics_json" '{names: $names}')"
 
                     echo "Applying topics to $repo -> $topics_json"
 
-                    gh api \
-                        -X PUT \
-                        -H "Accept: application/vnd.github+json" \
-                        "/repos/$repo/topics" \
-                        --input - <<< "{\"names\": $topics_json}"
+                    apply_topics "/repos/$repo/topics" "$payload"
                     done
